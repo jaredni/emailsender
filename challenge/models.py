@@ -1,5 +1,7 @@
 from django.db import models
 
+from challenge.tasks import send_message
+
 STATUS_TYPE = (
     (0, 'Sent'),
     (1, 'Failed'),
@@ -19,3 +21,7 @@ class Email(models.Model):
 
     class Meta:
         ordering = ['pk']
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        send_message.apply_async(kwargs={'email_id': self.pk})
