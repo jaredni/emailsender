@@ -1,0 +1,21 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+
+{% block branding %}
+    <div class="head">
+        <h1 id="name">Send an Email</h1>
+    </div>
+{% endblock %}
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+    	<a href="{% url 'send-email' %}">Create Email</a>
+    </div>
+{% endblock %}
+{% block content %}
+<form action="" method="POST">
+	{% csrf_token %}
+    {{ FORM.as_p }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
