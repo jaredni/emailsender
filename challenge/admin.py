@@ -8,4 +8,5 @@ class EmailAdmin(admin.ModelAdmin):
     list_display = ('recepient', 'subject', 'status')
 
 
+admin.site.site_url = "/admin/list_email"
 admin.site.register(Email, EmailAdmin)
