@@ -3,6 +3,8 @@ from __future__ import unicode_literals, absolute_import
 from challenge.forms import SendEmailForm
 from challenge.models import Email
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.views import generic
 
 
@@ -16,7 +18,8 @@ class CreateEmailView(generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = SendEmailForm(request.POST)
-        form.save()
+        form.send_email()
+        return HttpResponseRedirect(reverse('list-email'))
 
 
 class ListEmailView(generic.ListView):
