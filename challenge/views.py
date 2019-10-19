@@ -1,6 +1,7 @@
 from __future__ import unicode_literals, absolute_import
 
 from challenge.forms import SendEmailForm
+from challenge.models import Email
 
 from django.views import generic
 
@@ -16,3 +17,8 @@ class CreateEmailView(generic.TemplateView):
     def post(self, request, *args, **kwargs):
         form = SendEmailForm(request.POST)
         form.save()
+
+
+class ListEmailView(generic.ListView):
+    template_name = 'challenge/email_list.html'
+    model = Email

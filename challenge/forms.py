@@ -13,8 +13,10 @@ class EmailForm(forms.ModelForm):
 
 
 class SendEmailForm(forms.Form):
-    recipient = forms.CharField(max_length=255,
-        widget=forms.TextInput(attrs={'placeholder': 'Separate emails with comma'}))
+    recipient = forms.CharField(
+        max_length=255,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Separate using comma'}))
     subject = forms.CharField(max_length=255)
     text = forms.CharField(widget=forms.Textarea())
 

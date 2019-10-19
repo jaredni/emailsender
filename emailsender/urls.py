@@ -22,4 +22,6 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^admin/send_email/$',
         views.CreateEmailView.as_view(), name='send-email'),
+    url(r'^admin/list_email/$',
+        views.ListEmailView.as_view(), name='list-email'),
 ]

@@ -1,0 +1,51 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+{% block extrastyle %}
+    <style type="text/css">
+        .row {
+            padding: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block branding %}
+    <div class="head">
+        <h1 id="name">Send an Email</h1>
+    </div>
+{% endblock %}
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}" target="_blank">Home</a> &nbsp;
+        <a href="{% url 'list-email' %}">Email List</a>
+    </div>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Recipient</th>
+                <th>Subject</th>
+                <th>Content</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{ object.id }}</td>
+                    <td>{{ object.recepient }}</td>
+                    <td>{{ object.subject }}</td>
+                    <td>{{ object.text|truncatechars:50 }}</td>
+                    <td>{{ object.status_text }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <a class="button" href="{% url 'send-email' %}" >+ Create Email</a>
+</div>
+{% endblock %}
