@@ -126,6 +126,6 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-MAILGUN_URL = 'https://api.mailgun.net/v3/sandbox91a0b91978be45449e6425a219fc238e.mailgun.org/messages'
-MAILGUN_API_KEY = 'c530ae4c3e88b68ebddcc80f16426cec-9c988ee3-1904b8ff'
-MAILGUN_DOMAIN_NAME = 'postmaster@sandbox91a0b91978be45449e6425a219fc238e.mailgun.org'
+MAILGUN_URL = ''
+MAILGUN_API_KEY = ''
+MAILGUN_DOMAIN_NAME = ''
