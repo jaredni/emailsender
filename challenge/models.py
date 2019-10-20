@@ -19,6 +19,9 @@ class Email(models.Model):
     FAILED = 2
     PENDING = 3
 
+    def status_text(self):
+        return STATUS_TYPE[self.status][1]
+
     class Meta:
         ordering = ['pk']
 

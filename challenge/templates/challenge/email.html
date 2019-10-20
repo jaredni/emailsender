@@ -1,0 +1,29 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+{% block extrastyle %}
+    <style type="text/css">
+        .submitBtn {
+            padding: 4px 5px !important;
+        }
+    </style>
+{% endblock %}
+{% block branding %}
+    <div class="head">
+        <h1 id="name">Send an Email</h1>
+    </div>
+{% endblock %}
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">Home</a> &nbsp;
+        <a href="{% url 'list-email' %}">Email List</a> &nbsp;
+        <a href="{% url 'send-email' %}">Create Email</a>
+    </div>
+{% endblock %}
+{% block content %}
+<form action="" method="POST">
+	{% csrf_token %}
+    {{ FORM.as_p }}
+    <button class="button submitBtn" type="submit">Send Email</button>
+</form>
+{% endblock %}
