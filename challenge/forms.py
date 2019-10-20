@@ -1,13 +1,11 @@
 from __future__ import unicode_literals
 
-import json
-
 from challenge.models import Email
+from challenge.tasks import send_message
 
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from django.http import HttpResponse
 
 
 class EmailForm(forms.ModelForm):
@@ -32,7 +30,8 @@ class SendEmailForm(forms.Form):
             for recipient in recipients:
                 try:
                     validate_email(recipient)
-                    data['recepient'] = recipient
-                    EmailForm(data).save()
                 except ValidationError:
                     print("{} is an invalid email address".format(recipient))
+                data['recepient'] = recipient
+                email = EmailForm(data).save()
+                send_message.apply_async(kwargs={'email_id': email.pk})

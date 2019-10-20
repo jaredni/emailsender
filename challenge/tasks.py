@@ -1,12 +1,14 @@
 import requests
 
+from challenge.models import Email
+
 from django.conf import settings
+
 from emailsender.celery import app
 
 
 @app.task(name='send-message')
 def send_message(email_id):
-    from challenge.models import Email
     email = Email.objects.get(pk=email_id)
     status = requests.post(
         settings.MAILGUN_URL,
