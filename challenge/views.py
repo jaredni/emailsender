@@ -25,3 +25,7 @@ class CreateEmailView(generic.TemplateView):
 class ListEmailView(generic.ListView):
     template_name = 'challenge/email_list.html'
     model = Email
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.order_by('-pk')
